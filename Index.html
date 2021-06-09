@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Gaia - Bootstrap Template | Free Demo</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -17,9 +15,7 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/css/fonts/pe-icon-7-stroke.css" rel="stylesheet">
 </head>
-
 <body>
-
     <nav class="navbar navbar-default navbar-transparent navbar-fixed-top" color-on-scroll="200">
         <!-- if you want to keep the navbar hidden you can add this class to the navbar "navbar-burger"-->
         <div class="container">
@@ -61,8 +57,6 @@
             <!-- /.navbar-collapse -->
         </div>
     </nav>
-
-
     <div class="section section-header">
         <div class="parallax filter filter-color-red">
             <div class="image"
@@ -127,8 +121,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="section section-our-team-freebie">
         <div class="parallax filter filter-color-black">
             <div class="image" style="background-image:url('assets/img/header-2.jpeg')">
@@ -198,8 +190,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="section section-our-clients-freebie">
         <div class="container">
             <div class="title-area">
@@ -231,8 +221,6 @@
                     </a>
                 </li>
             </ul>
-
-
             <div class="tab-content">
                 <div class="tab-pane active" id="testimonial1">
                     <p class="description">
@@ -252,8 +240,6 @@
 
         </div>
     </div>
-
-
     <div class="section section-small section-get-started">
         <div class="parallax filter">
             <div class="image"
@@ -272,8 +258,6 @@
             </div>
         </div>
     </div>
-
-
     <footer class="footer footer-big footer-color-black" data-color="black">
         <div class="container">
             <div class="row">
@@ -379,8 +363,109 @@
                  © <script> document.write(new Date().getFullYear()) </script> Creative Tim, made with love
             </div>
         </div>
+        <!--MAPA-->
+        <div class="container-fluid">
+            <div class="row" style="padding-top: 0.5rem;">
+              <div class="col-12 col-md-6" style="margin-bottom: 1rem;">
+                <!--Div del mapa-->
+                <div id="map" style="border-radius: 0.4rem"></div>
+              </div>
+              <div class="col-12 col-md-6">
+                <h2
+                  style="padding: 0.5rem; border-radius: 0.3rem; background-color: rgb(0, 140, 255); color: rgb(255, 255, 255); text-align: center;">
+                  Las ciudades más pobladas de México</h2>
+                <div id="datos"></div>
+              </div>
+            </div>
+          </div>
+          <style>
+            html,
+            body {
+              margin: 0px;
+              padding: 0px;
+            }
+            #map {
+              width: 100%;
+              height: 500px;
+            }
+          </style>
+          <!--Mis funcionalidad-->
+          <script>
+            function iniciaMapa() {
+              var coordenadas = { lat: 21.3634964, lng: -101.9291015 };
+              var props = {
+                center: coordenadas,
+                zoom: 6,
+                mapTypeId: 'terrain'
+              };
+              map = new google.maps.Map(document.getElementById('map'), props);
+              fetch('municipios.json')
+                .then(function (response) {
+                  response.json().then(function (municipios) {
+                    var datos = document.getElementById('datos');
+                    var tabla = `
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Municipio</th>
+                          <th scope="col">Estado</th>
+                          <th scope="col">Habitantes</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                    `;
+                    var coordsVuelos = [];
+                    console.log(municipios);
+                    municipios.forEach(municipio => {
+                      coordsVuelos.push(municipio.coordenadas);
+                      var municipioCirculo = new google.maps.Circle({
+                        strokeColor: '#0F00DB',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: '#0F00DB',
+                        fillOpacity: 0.35,
+                        map: map,
+                        center: municipio.coordenadas,
+                        radius: Math.sqrt(municipio.habitantes) * 12
+                      });
+        
+                      tabla += `
+                        <tr>
+                          <th scope="row">${municipio.nombre}</th>
+                          <td>${municipio.estado}</td>
+                          <td>${municipio.habitantes}</td>
+                        </tr>
+                      `;
+                    });
+                    var trazos = new google.maps.Polyline({
+                      path: coordsVuelos,
+                      geodesic: true,
+                      strokeColor: '#009E1A',
+                      strokeOpacity: 1,
+                    });
+                    trazos.setMap(map);
+                    tabla += `  
+                        </tbody>
+                        </table>`;
+                    datos.innerHTML = tabla;
+                  });
+                });
+            }
+          </script>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+           <!-- Google Maps -->
+           <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQmP9-PhK5VptZ8mDqilZspccDXGdmNzs&callback=iniciaMapa" async
+           defer></script>
+        <!--000-->
     </footer>
-
 </body>
 
 <!--   core js files    -->
