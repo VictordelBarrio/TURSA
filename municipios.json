@@ -7,15 +7,7 @@
                   "lng": -101.94074824975445
             },
             "habitantes": 55555
-      },
-      {
-            "nombre": "Tijuana",
-            "estado": "Baja California Norte",
-            "coordenadas": {
-                  "lat": 32.503573,
-                  "lng": -116.967028
-            },
-            "habitantes": 1321004
       }
+    
 ]
  
