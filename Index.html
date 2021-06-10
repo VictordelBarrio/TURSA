@@ -395,7 +395,7 @@
               var coordenadas = { lat: 21.348792683680504, lng: -101.94074824975445 };
               var props = {
                 center: coordenadas,
-                zoom: 2,
+                zoom: 22,
                 mapTypeId: 'terrain'
               };
               map = new google.maps.Map(document.getElementById('map'), props);
@@ -419,10 +419,10 @@
                     municipios.forEach(municipio => {
                       coordsVuelos.push(municipio.coordenadas);
                       var municipioCirculo = new google.maps.Circle({
-                        strokeColor: '#0F00DB',
+                        strokeColor: '#ff6500',
                         strokeOpacity: 0.8,
                         strokeWeight: 2,
-                        fillColor: '#0F00DB',
+                        fillColor: '#ff6500',
                         fillOpacity: 0.35,
                         map: map,
                         center: municipio.coordenadas,
@@ -440,7 +440,7 @@
                     var trazos = new google.maps.Polyline({
                       path: coordsVuelos,
                       geodesic: true,
-                      strokeColor: '#009E1A',
+                      strokeColor: '##ffa500',
                       strokeOpacity: 1,
                     });
                     trazos.setMap(map);
