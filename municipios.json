@@ -6,7 +6,7 @@
                   "lat": 21.348792683680504,
                   "lng": -101.94074824975445
             },
-            "habitantes": 55
+            "habitantes": 1
       },
       {
             "nombre": "La Olimpia",
@@ -16,6 +16,32 @@
                   "lng": -101.94047302675246
             },
             "habitantes": 44
+      },
+      {
+            "nombre": "Industrias El Gallo",
+            "estado": "03",
+            "coordenadas": {
+                  "lat": 21.343782140647306,
+                  "lng": -101.94275351434781
+            },
+            "habitantes": 44
+      },
+      {
+            "nombre": "Walmart",
+            "estado": "04",
+            "coordenadas": {
+                  "lat": 21.342271576970962,
+                  "lng": -101.94511629063531
+            },
+            "habitantes": 44
+      },
+      {
+            "nombre": "Los Montes",
+            "estado": "05",
+            "coordenadas": {
+                  "lat": 21.3407376308564,
+                  "lng": -101.94763488430226
+            },
+            "habitantes": 44
       }
-    
 ]
