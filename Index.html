@@ -381,32 +381,7 @@
             <h2 id="H">Horarios</h2>
            
             
-            <table style="width:100%">
-              <tr>
-                <th>Estacion</th>
-                <td>Transportes Urbanos Romo</td>
-              </tr>
-              <tr>
-                <th rowspan="2">Horario:</th>
-                <td>7:17</td>
-              </tr>
-              <tr>
-                <td>7:23</td>
-              </tr>
-<!--2-->
-<tr>
-    <th>Estacion</th>
-    <td>La Olimpia</td>
-  </tr>
-  <tr>
-    <th rowspan="2">Horario:</th>
-    <td>7:22</td>
-  </tr>
-  <tr>
-    <td>7:29</td>
-  </tr>
-
-            </table>
+            
         <!--MAPA-->
         <div class="container-fluid">
             <div class="row" style="padding-top: 0.5rem;">
@@ -423,6 +398,32 @@
                 <h2
                   style="padding: 0.2rem; border-radius: 0.3rem; background-color: rgb(255, 153, 0); color: rgb(255, 255, 255); text-align: center;">
                  Estaciones </h2>
+                 <table style="width:100%">
+                    <tr>
+                      <th>Estacion</th>
+                      <td>Transportes Urbanos Romo</td>
+                    </tr>
+                    <tr>
+                      <th rowspan="2">Horario:</th>
+                      <td>7:17</td>
+                    </tr>
+                    <tr>
+                      <td>7:23</td>
+                    </tr>
+      <!--2-->
+      <tr>
+          <th>Estacion</th>
+          <td>La Olimpia</td>
+        </tr>
+        <tr>
+          <th rowspan="2">Horario:</th>
+          <td>7:22</td>
+        </tr>
+        <tr>
+          <td>7:29</td>
+        </tr>
+      
+                  </table>
                 <div id="datos"></div>
               </div>
             </div>
@@ -439,68 +440,7 @@
             }
           </style>
           <!--Mis funcionalidad-->
-          <script>
-            function iniciaMapa() {
-              var coordenadas = { lat: 21.348792683680504, lng: -101.94074824975445 };
-              var props = {
-                center: coordenadas,
-                zoom: 220,
-                mapTypeId: 'terrain'
-              };
-              map = new google.maps.Map(document.getElementById('map'), props);
-              fetch('municipios.json')
-                .then(function (response) {
-                  response.json().then(function (municipios) {
-                    var datos = document.getElementById('datos');
-                    var tabla = `
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th scope="col">Estacion</th>
-                          <th scope="col">NUM</th>
-                          <th scope="col">Afluencia</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                    `;
-                    var coordsVuelos = [];
-                    console.log(municipios);
-                    municipios.forEach(municipio => {
-                      coordsVuelos.push(municipio.coordenadas);
-                      var municipioCirculo = new google.maps.Circle({
-                        strokeColor: '#ff6500',
-                        strokeOpacity: 0.8,
-                        strokeWeight: 2,
-                        fillColor: '#ff6500',
-                        fillOpacity: 0.35,
-                        map: map,
-                        center: municipio.coordenadas,
-                        radius: Math.sqrt(municipio.habitantes) 
-                      });
-        
-                      tabla += `
-                        <tr>
-                          <th scope="row">${municipio.nombre}</th>
-                          <td>${municipio.estado}</td>
-                          <td>${municipio.habitantes}</td>
-                        </tr>
-                      `;
-                    });
-                    var trazos = new google.maps.Polyline({
-                      path: coordsVuelos,
-                      geodesic: true,
-                      strokeColor: '##ffa500',
-                      strokeOpacity: 1,
-                    });
-                    trazos.setMap(map);
-                    tabla += `  
-                        </tbody>
-                        </table>`;
-                    datos.innerHTML = tabla;
-                  });
-                });
-            }
-          </script>
+       
         <!--000-->
         <!--TimerPrueba-->
 
