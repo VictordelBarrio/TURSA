@@ -6,8 +6,16 @@
                   "lat": 21.348792683680504,
                   "lng": -101.94074824975445
             },
-            "habitantes": 55555
+            "habitantes": 55
+      },
+      {
+            "nombre": "La Olimpia",
+            "estado": "02",
+            "coordenadas": {
+                  "lat": 21.34715879561259,
+                  "lng": -101.94047302675246
+            },
+            "habitantes": 44
       }
     
 ]
- 
